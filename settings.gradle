@@ -1,0 +1,1 @@
+include ':example', ':brown-annotations', ':brown-compiler', ':brown-core', ':brown-ec'
