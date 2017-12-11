@@ -14,18 +14,18 @@ import java.util.HashMap;
 
 public class Configurator {
 
-    private static final HashMap<String, Object> BROWN_CONFIGS = new HashMap<>();
+    private static final HashMap<Object, Object> BROWN_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
-        BROWN_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
     }
 
     public static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
-    final HashMap<String, Object> getBrownConfigs() {
+    final HashMap<Object, Object> getBrownConfigs() {
         return BROWN_CONFIGS;
     }
 
@@ -35,11 +35,12 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        BROWN_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+
+        BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }
 
     public final Configurator withApiHost(String host) {
-        BROWN_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        BROWN_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
         return this;
     }
 
@@ -58,16 +59,20 @@ public class Configurator {
     }
 
     private void checkConfiguration() {
-        final boolean isReady = (boolean) BROWN_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) BROWN_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready, call configure");
         }
     }
 
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(Enum<ConfigType> key) {
+    final <T> T getConfiguration(Object key) {
         checkConfiguration();
-        return (T) BROWN_CONFIGS.get(key.name());
+        final Object value = BROWN_CONFIGS.get(key);
+        if (value == null) {
+            throw new NullPointerException(key.toString() + " IS NULL");
+        }
+        return (T) BROWN_CONFIGS.get(key);
     }
 
 }
