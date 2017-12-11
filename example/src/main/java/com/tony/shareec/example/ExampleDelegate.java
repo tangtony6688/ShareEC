@@ -2,6 +2,7 @@ package com.tony.shareec.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,23 +19,23 @@ import com.tony.brown.net.callback.ISuccess;
 public class ExampleDelegate extends BrownDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_example;
+        return com.tony.shareec.example.R.layout.delegate_example;
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        testRequestClient();
+        testRestClient();
     }
 
-    private void testRequestClient() {
+    private void testRestClient() {
         RestClient.builder()
-                .url("http://news.baidu.com/")
-//                .params("", "")
+                .url("http://127.0.0.1/test")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-//                        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+                        Log.d("NIUBILITY", response);
+                        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {

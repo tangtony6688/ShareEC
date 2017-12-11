@@ -22,23 +22,11 @@ public class RestCreator {
      * 参数容器
      */
     private static final class ParamsHolder {
-        public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
     public static WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
-    }
-
-    /**
-     * 构建全局Retrofit客户端
-     */
-    private static final class RetrofitHolder {
-        private static final String BASE_URL = Brown.getConfiguration(ConfigKeys.API_HOST);
-        private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(OKHttpHolder.OK_HTTP_CLIENT)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
     }
 
     /**
@@ -60,6 +48,18 @@ public class RestCreator {
 
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                .build();
+    }
+
+    /**
+     * 构建全局Retrofit客户端
+     */
+    private static final class RetrofitHolder {
+        private static final String BASE_URL = Brown.getConfiguration(ConfigKeys.API_HOST);
+        private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(OKHttpHolder.OK_HTTP_CLIENT)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 

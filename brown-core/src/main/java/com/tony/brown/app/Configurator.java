@@ -6,6 +6,8 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by Tony on 2017/12/9.
  */
@@ -16,12 +18,13 @@ public class Configurator {
 
     private static final HashMap<Object, Object> BROWN_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
+        BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
     }
 
-    public static Configurator getInstance() {
+    static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -40,7 +43,12 @@ public class Configurator {
     }
 
     public final Configurator withApiHost(String host) {
-        BROWN_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
+        BROWN_CONFIGS.put(ConfigKeys.API_HOST, host);
+        return this;
+    }
+
+    public final Configurator withLoaderDelayed(long delayed) {
+        BROWN_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;
     }
 
@@ -58,8 +66,20 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        BROWN_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptor(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        BROWN_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
     private void checkConfiguration() {
-        final boolean isReady = (boolean) BROWN_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
+        final boolean isReady = (boolean) BROWN_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready, call configure");
         }
@@ -68,10 +88,6 @@ public class Configurator {
     @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
-        final Object value = BROWN_CONFIGS.get(key);
-        if (value == null) {
-            throw new NullPointerException(key.toString() + " IS NULL");
-        }
         return (T) BROWN_CONFIGS.get(key);
     }
 
