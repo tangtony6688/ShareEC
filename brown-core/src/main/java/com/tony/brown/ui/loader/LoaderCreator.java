@@ -1,4 +1,4 @@
-package com.tony.brown.ui;
+package com.tony.brown.ui.loader;
 
 import android.content.Context;
 

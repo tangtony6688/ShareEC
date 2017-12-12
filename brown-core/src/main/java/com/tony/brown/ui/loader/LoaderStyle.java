@@ -1,4 +1,4 @@
-package com.tony.brown.ui;
+package com.tony.brown.ui.loader;
 
 /**
  * Created by Tony on 2017/12/11.

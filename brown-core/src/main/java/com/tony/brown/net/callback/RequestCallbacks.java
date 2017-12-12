@@ -2,8 +2,8 @@ package com.tony.brown.net.callback;
 
 import android.os.Handler;
 
-import com.tony.brown.ui.BrownLoader;
-import com.tony.brown.ui.LoaderStyle;
+import com.tony.brown.ui.loader.BrownLoader;
+import com.tony.brown.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

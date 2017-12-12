@@ -8,8 +8,8 @@ import com.tony.brown.net.callback.IRequest;
 import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.net.callback.RequestCallbacks;
 import com.tony.brown.net.download.DownloadHandler;
-import com.tony.brown.ui.BrownLoader;
-import com.tony.brown.ui.LoaderStyle;
+import com.tony.brown.ui.loader.BrownLoader;
+import com.tony.brown.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;
