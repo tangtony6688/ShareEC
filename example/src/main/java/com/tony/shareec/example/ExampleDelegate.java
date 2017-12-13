@@ -1,6 +1,7 @@
 package com.tony.shareec.example;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +24,7 @@ public class ExampleDelegate extends BrownDelegate {
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         testRestClient();
     }
 

@@ -46,10 +46,10 @@
                 android:layout_marginBottom="8dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edit_sign_in_name_email_phone"
+                    android:id="@+id/edit_sign_in_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/sign_in_name_email_phone"
+                    android:hint="@string/sign_up_email"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -84,15 +84,28 @@
                 android:id="@+id/tv_link_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="32dp"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:text="@string/sign_in_to_sign_up" />
-            
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="@string/sign_in_third_party"/>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_sign_in_wechat"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:textColor="@color/icon_wechat"

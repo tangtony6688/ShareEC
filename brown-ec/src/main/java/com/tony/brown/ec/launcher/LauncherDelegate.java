@@ -1,13 +1,19 @@
 package com.tony.brown.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.tony.brown.app.AccountManager;
+import com.tony.brown.app.IUserChecker;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
+import com.tony.brown.ui.launcher.ILauncherListener;
+import com.tony.brown.ui.launcher.OnLauncherFinishTag;
 import com.tony.brown.ui.launcher.ScrollLauncherTag;
 import com.tony.brown.util.storage.BrownPreference;
 import com.tony.brown.util.timer.BaseTimerTask;
@@ -30,6 +36,7 @@ public class LauncherDelegate extends BrownDelegate implements ITimerListener {
 
     private Timer mTimer = null;
     private int mCount = 5;
+    private ILauncherListener mILauncherListener = null;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
@@ -47,12 +54,20 @@ public class LauncherDelegate extends BrownDelegate implements ITimerListener {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;
+        }
+    }
+
+    @Override
     public Object setLayout() {
         return R.layout.delegate_launcher;
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         initTimer();
     }
 
@@ -62,6 +77,21 @@ public class LauncherDelegate extends BrownDelegate implements ITimerListener {
             getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录了APP
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 

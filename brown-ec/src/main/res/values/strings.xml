@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BrownEC</string>
     <string name="sign_up">注册</string>
-    <string name="sign_up_name">姓名</string>
+    <string name="sign_up_name">用户名</string>
     <string name="sign_up_email">邮箱</string>
     <string name="sign_up_phone">手机</string>
     <string name="sign_up_password">密码</string>
@@ -9,7 +9,7 @@
     <string name="sign_up_to_sign_in">已经注册了？请登录</string>
 
     <string name="sign_in">登录</string>
-    <string name="sign_in_name_email_phone">姓名/邮箱/手机</string>
     <string name="sign_in_to_sign_up">还没有账户？现在注册吧</string>
+    <string name="sign_in_third_party">第三方账号快捷登录</string>
     <string name="sigon_in_wechat">{fa-weixin}</string>
 </resources>

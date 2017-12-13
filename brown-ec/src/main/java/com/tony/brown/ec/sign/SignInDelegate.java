@@ -1,6 +1,8 @@
 package com.tony.brown.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
@@ -9,6 +11,9 @@ import android.view.View;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
+import com.tony.brown.net.RestClient;
+import com.tony.brown.net.callback.ISuccess;
+import com.tony.brown.util.log.BrownLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,16 +24,38 @@ import butterknife.OnClick;
 
 public class SignInDelegate extends BrownDelegate {
 
-    @BindView(R2.id.edit_sign_in_name_email_phone)
-    TextInputEditText mNameEmailPhone = null;
+    @BindView(R2.id.edit_sign_in_email)
+    TextInputEditText mEmail = null;
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword = null;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+
+    }
+
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
-        if (checkForm() != null) {
-            String form = checkForm();
-
+        if (checkForm()) {
+            RestClient.builder()
+                    .url("http://114.67.235.114/RestServer/api/user_profile.php")
+                    .params("email", mEmail.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            BrownLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .build()
+                    .post();
         }
     }
 
@@ -48,29 +75,21 @@ public class SignInDelegate extends BrownDelegate {
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
     }
 
-    private String checkForm() {
-        final String nameEmailPhone = mNameEmailPhone.getText().toString();
+    private boolean checkForm() {
+        final String email = mEmail.getText().toString();
         final String password = mPassword.getText().toString();
 
-        String form = null;
         boolean isPass = true;
 
-        if (nameEmailPhone.isEmpty()) {
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mEmail.setError("错误的邮箱格式");
             isPass = false;
-            mNameEmailPhone.setError("请输入姓名/邮箱/手机");
-        } else if (Patterns.EMAIL_ADDRESS.matcher(nameEmailPhone).matches()) {
-            form = "FORM_EMAIL";
-            mNameEmailPhone.setError(null);
-        } else if (checkCellphone(nameEmailPhone)) {
-            form = "FORM_PHONE";
-            mNameEmailPhone.setError(null);
         } else {
-            form = "FORM_NAME";
-            mNameEmailPhone.setError(null);
+            mEmail.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 6) {
@@ -80,11 +99,7 @@ public class SignInDelegate extends BrownDelegate {
             mPassword.setError(null);
         }
 
-        if (isPass) {
-            return form;
-        } else {
-            return null;
-        }
+        return isPass;
     }
 
     /**
