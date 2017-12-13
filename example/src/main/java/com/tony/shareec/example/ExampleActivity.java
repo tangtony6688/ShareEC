@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import com.tony.brown.activities.ProxyActivity;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.launcher.LauncherDelegate;
+import com.tony.brown.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -21,6 +22,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public BrownDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }

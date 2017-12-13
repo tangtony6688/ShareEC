@@ -31,8 +31,10 @@ dependencies {
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
     testApi 'junit:junit:4.12'
     //Android Support包
+    api 'com.android.support:support-v4:26.1.0'
     api 'com.android.support:appcompat-v7:26.1.0'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.android.support:design:26.1.0'
     api project(':brown-annotations')
     //字体图标
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
@@ -56,23 +58,14 @@ dependencies {
     //JSON依赖Android版
     api 'com.alibaba:fastjson:1.1.57.android'
     //Log
-
     //数据库依赖
-
     //微信依赖（包含统计）
-
     //沉浸式状态栏
-
     //Google AutoValue
-
     //工具包
-
     //动态权限处理
-
     //图片剪裁
-
     //二维码扫描
-
     //RxJava
     api 'io.reactivex.rxjava2:rxjava:2.1.1'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_sign_up">#b8327a</color>
+    <color name="toolbar_background">#a3256a</color>
+    <color name="icon_wechat">#04b00f</color>
+</resources>
