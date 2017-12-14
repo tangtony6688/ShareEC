@@ -1,5 +1,7 @@
 package com.tony.brown.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -75,6 +77,21 @@ public class Configurator {
     public final Configurator withInterceptor(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         BROWN_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withWeChatAppId(String appId) {
+        BROWN_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appId);
+        return this;
+    }
+
+    public final Configurator withWeChatAppSecret(String appSecret) {
+        BROWN_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        BROWN_CONFIGS.put(ConfigKeys.ACTIVITY, activity);
         return this;
     }
 

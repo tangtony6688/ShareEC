@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShareEC</string>
+    <string name="wx_callback">微信回调</string>
+    <string name="wx_pay_callback">微信支付回调</string>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.tony.brown.activities.ProxyActivity;
+import com.tony.brown.app.Brown;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.launcher.LauncherDelegate;
 import com.tony.brown.ec.launcher.LauncherScrollDelegate;
@@ -24,6 +25,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         if (actionBar != null) {
             actionBar.hide();
         }
+        Brown.getConfigurator().withActivity(this);
     }
 
     @Override
