@@ -9,10 +9,9 @@ import com.tony.brown.activities.ProxyActivity;
 import com.tony.brown.app.Brown;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.launcher.LauncherDelegate;
-import com.tony.brown.ec.launcher.LauncherScrollDelegate;
+import com.tony.brown.ec.main.EcBottomDelegate;
 import com.tony.brown.ec.sign.ISignListener;
 import com.tony.brown.ec.sign.SignInDelegate;
-import com.tony.brown.ec.sign.SignUpDelegate;
 import com.tony.brown.ui.launcher.ILauncherListener;
 import com.tony.brown.ui.launcher.OnLauncherFinishTag;
 
@@ -36,6 +35,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
+        getSupportDelegate().startWithPop(new EcBottomDelegate());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new ExampleDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();

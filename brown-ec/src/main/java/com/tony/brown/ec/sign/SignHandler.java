@@ -1,7 +1,5 @@
 package com.tony.brown.ec.sign;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.tony.brown.app.AccountManager;
@@ -41,10 +39,6 @@ public class SignHandler {
 
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
         DatabaseManager.getInstance().getDao().insertOrReplace(profile);
-
-        if (signListener == null) {
-            Log.d("SignHandler_onSignIn", "SUCCESS!");
-        }
 
         //已经注册并登录成功了
         AccountManager.setSignState(true);

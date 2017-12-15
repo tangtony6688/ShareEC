@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ public class SignInDelegate extends BrownDelegate {
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
+                            Log.d("classSignInDelegate", "SUCCESS!");
                             BrownLogger.json("USER_PROFILE", response);
                             SignHandler.onSignIn(response, mISignListener);
                         }
