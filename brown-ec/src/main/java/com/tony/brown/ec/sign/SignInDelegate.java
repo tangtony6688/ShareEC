@@ -48,13 +48,12 @@ public class SignInDelegate extends BrownDelegate {
     void onClickSignIn() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://114.67.235.114/RestServer/api/user_profile.php")
+                    .url("http://192.168.199.100:8080/~Tony/BrownServer/api/userSignIn.php")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-                            Log.d("classSignInDelegate", "SUCCESS!");
                             BrownLogger.json("USER_PROFILE", response);
                             SignHandler.onSignIn(response, mISignListener);
                         }

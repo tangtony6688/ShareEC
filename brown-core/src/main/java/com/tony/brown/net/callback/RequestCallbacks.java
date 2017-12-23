@@ -1,6 +1,7 @@
 package com.tony.brown.net.callback;
 
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.tony.brown.ui.loader.BrownLoader;
 import com.tony.brown.ui.loader.LoaderStyle;
@@ -30,7 +31,7 @@ public class RequestCallbacks implements Callback<String> {
     }
 
     @Override
-    public void onResponse(Call<String> call, Response<String> response) {
+    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
         if (response.isSuccessful()) {
             if (call.isExecuted()) {
                 if (SUCCESS != null) {
@@ -47,7 +48,7 @@ public class RequestCallbacks implements Callback<String> {
     }
 
     @Override
-    public void onFailure(Call<String> call, Throwable t) {
+    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
         if (FAILURE != null) {
             FAILURE.onFailure();
         }

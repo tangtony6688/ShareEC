@@ -136,7 +136,7 @@ public class RestClient {
 
     public final void post() {
         if (BODY == null) {
-            request(HttpMethod.POST);
+                request(HttpMethod.POST);
         } else {
             if (!PARAMS.isEmpty()) {
                 throw new RuntimeException("params must be null!");

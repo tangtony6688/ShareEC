@@ -51,7 +51,7 @@ public class SignUpDelegate extends BrownDelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://114.67.235.114/RestServer/api/user_profile.php")
+                    .url("http://192.168.199.100:8080/~Tony/BrownServer/api/userSignUp.php")
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())

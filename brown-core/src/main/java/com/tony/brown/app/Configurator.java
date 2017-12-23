@@ -4,10 +4,13 @@ import android.app.Activity;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.internal.Utils;
 import okhttp3.Interceptor;
 
 /**
@@ -40,7 +43,7 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-
+        Logger.addLogAdapter(new AndroidLogAdapter());
         BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }
 
