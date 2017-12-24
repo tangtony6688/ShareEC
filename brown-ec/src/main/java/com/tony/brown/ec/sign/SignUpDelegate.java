@@ -16,6 +16,8 @@ import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.util.log.BrownLogger;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -60,7 +62,10 @@ public class SignUpDelegate extends BrownDelegate {
                         @Override
                         public void onSuccess(String response) {
                             BrownLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response, mISignListener);
+                            String resMessage = SignHandler.onSignUp(response, mISignListener);
+                            if (Objects.equals(resMessage, "emailDuplicate")) {
+                                mEmail.setError("该邮箱已经注册");
+                            }
                         }
                     })
                     .build()

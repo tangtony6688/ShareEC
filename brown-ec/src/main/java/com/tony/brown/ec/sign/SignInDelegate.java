@@ -19,6 +19,8 @@ import com.tony.brown.util.log.BrownLogger;
 import com.tony.brown.wechat.BrownWeChat;
 import com.tony.brown.wechat.callbacks.IWeChatSignInCallback;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -55,7 +57,12 @@ public class SignInDelegate extends BrownDelegate {
                         @Override
                         public void onSuccess(String response) {
                             BrownLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignIn(response, mISignListener);
+                            String resMessage = SignHandler.onSignIn(response, mISignListener);
+                            if (Objects.equals(resMessage, "unSigned")) {
+                                mEmail.setError("该邮箱未注册");
+                            } else if (Objects.equals(resMessage, "wrongPassword")) {
+                                mPassword.setError("密码错误");
+                            }
                         }
                     })
                     .build()
