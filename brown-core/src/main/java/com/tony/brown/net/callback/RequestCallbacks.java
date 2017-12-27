@@ -3,6 +3,9 @@ package com.tony.brown.net.callback;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.tony.brown.app.Brown;
+import com.tony.brown.app.ConfigKeys;
+import com.tony.brown.net.RestCreator;
 import com.tony.brown.ui.loader.BrownLoader;
 import com.tony.brown.ui.loader.LoaderStyle;
 
@@ -20,7 +23,7 @@ public class RequestCallbacks implements Callback<String> {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final LoaderStyle LOADER_STYLE;
-    private static final Handler HANDLER = new Handler();
+    private static final Handler HANDLER = Brown.getHandler();
 
     public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle loaderStyle) {
         this.REQUEST = request;
@@ -44,7 +47,7 @@ public class RequestCallbacks implements Callback<String> {
             }
         }
 
-        stopLoading();
+        onRequestFinish();
     }
 
     @Override
@@ -56,17 +59,19 @@ public class RequestCallbacks implements Callback<String> {
             REQUEST.onRequestEnd();
         }
 
-        stopLoading();
+        onRequestFinish();
     }
 
-    private void stopLoading() {
+    private void onRequestFinish() {
+        final long delayed = Brown.getConfiguration(ConfigKeys.LOADER_DELAYED);
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    RestCreator.getParams().clear();
                     BrownLoader.stopLoading();
                 }
-            }, 1000);
+            }, delayed);
         }
     }
 

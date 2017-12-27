@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
@@ -53,7 +52,7 @@ public class SignUpDelegate extends BrownDelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://192.168.199.100:8080/~Tony/BrownServer/api/userSignUp.php")
+                    .url("userSignUp.php")
                     .params("name", mName.getText().toString())
                     .params("email", mEmail.getText().toString())
                     .params("phone", mPhone.getText().toString())

@@ -2,5 +2,6 @@
 <resources>
     <color name="button_sign_up">#b8327a</color>
     <color name="toolbar_background">#a3256a</color>
+    <color name="index_refresh">#ad2f6c</color>
     <color name="icon_wechat">#04b00f</color>
 </resources>

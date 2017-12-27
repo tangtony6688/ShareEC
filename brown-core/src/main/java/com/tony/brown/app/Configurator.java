@@ -1,6 +1,7 @@
 package com.tony.brown.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -10,7 +11,6 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import butterknife.internal.Utils;
 import okhttp3.Interceptor;
 
 /**
@@ -22,11 +22,13 @@ import okhttp3.Interceptor;
 public class Configurator {
 
     private static final HashMap<Object, Object> BROWN_CONFIGS = new HashMap<>();
+    private static final Handler HANDLER = new Handler();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         BROWN_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
+        BROWN_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     static Configurator getInstance() {
@@ -108,6 +110,10 @@ public class Configurator {
     @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key) {
         checkConfiguration();
+        final Object value = BROWN_CONFIGS.get(key);
+        if (value == null) {
+            throw new NullPointerException(key.toString() + " IS NULL");
+        }
         return (T) BROWN_CONFIGS.get(key);
     }
 

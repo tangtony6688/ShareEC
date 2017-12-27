@@ -1,7 +1,7 @@
 package com.tony.brown.app;
 
 import android.content.Context;
-import java.util.logging.Handler;
+import android.os.Handler;
 
 /**
  * Created by Tony on 2017/12/9.
@@ -28,10 +28,10 @@ public final class Brown {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 
-//    public static Handler getHandler() {
-//        return getConfiguration(ConfigKeys.HANDLER);
-//    }
-//
-//    public static void test() {
-//    }
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER);
+    }
+
+    public static void test() {
+    }
 }

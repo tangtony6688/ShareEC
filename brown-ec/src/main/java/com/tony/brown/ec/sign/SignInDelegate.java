@@ -50,7 +50,7 @@ public class SignInDelegate extends BrownDelegate {
     void onClickSignIn() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://192.168.199.100:8080/~Tony/BrownServer/api/userSignIn.php")
+                    .url("userSignIn.php")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {
