@@ -5,4 +5,9 @@ package com.tony.brown.delegates;
  */
 
 public abstract class BrownDelegate extends PermissionCheckerDelegate {
+
+    @SuppressWarnings("unchecked")
+    public <T extends BrownDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }

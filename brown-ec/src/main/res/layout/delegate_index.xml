@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,50 +20,51 @@
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:paddingTop="10dp"
+        app:layout_behavior="com.tony.brown.ec.main.index.TranslucentBehavior">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="6">
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_scan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="start"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:paddingEnd="10dp"
+                android:paddingEnd="20dp"
+                android:text="@string/index_scan"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
-                android:text="@string/index_scan"/>
-            
+                android:textSize="25sp" />
+
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_search_view"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_weight="4"
                 android:layout_gravity="center"
-                android:gravity="center_vertical"
+                android:layout_weight="4"
                 android:background="@android:color/white"
-                android:paddingStart="20dp"
-                android:text="@string/index_search"/>
+                android:gravity="center"
+                android:hint="@string/index_search" />
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="end"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:paddingStart="10dp"
+                android:text="@string/index_message"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
-                android:text="@string/index_message"/>
+                android:textSize="25sp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 
     </android.support.v7.widget.Toolbar>
-    
+
 </android.support.design.widget.CoordinatorLayout>

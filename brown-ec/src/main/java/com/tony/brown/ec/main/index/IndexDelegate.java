@@ -3,6 +3,7 @@ package com.tony.brown.ec.main.index;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,8 +15,9 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.tony.brown.delegates.bottom.BottomItemDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
+import com.tony.brown.ec.main.EcBottomDelegate;
+import com.tony.brown.ui.recycler.BaseDecoration;
 import com.tony.brown.ui.refresh.RefreshHandler;
-import com.tony.brown.util.log.BrownLogger;
 
 import butterknife.BindView;
 
@@ -53,8 +55,12 @@ public class IndexDelegate extends BottomItemDelegate {
     }
 
     private void initRecyclerView() {
-        final GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration
+                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override

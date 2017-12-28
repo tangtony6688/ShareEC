@@ -13,7 +13,7 @@
     <string name="sign_in_third_party">第三方账号快捷登录</string>
     <string name="sigon_in_wechat">{fa-weixin}</string>
 
-    <string name="index_scan">{icon-scan}</string>
+    <string name="index_scan">{fa-qrcode}</string>
     <string name="index_search">搜索</string>
     <string name="index_message">{fa-commenting}</string>
 </resources>

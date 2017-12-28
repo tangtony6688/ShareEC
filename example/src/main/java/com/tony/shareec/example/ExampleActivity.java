@@ -3,7 +3,6 @@ package com.tony.shareec.example;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.widget.Toast;
 
 import com.tony.brown.activities.ProxyActivity;
 import com.tony.brown.app.Brown;
@@ -15,6 +14,8 @@ import com.tony.brown.ec.sign.SignInDelegate;
 import com.tony.brown.ui.launcher.ILauncherListener;
 import com.tony.brown.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
@@ -25,6 +26,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Brown.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override
