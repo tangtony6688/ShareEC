@@ -16,4 +16,7 @@
     <string name="index_scan">{fa-qrcode}</string>
     <string name="index_search">搜索</string>
     <string name="index_message">{fa-commenting}</string>
+
+    <string name="sort_title">分类</string>
+    <string name="sort_content_more">more ></string>
 </resources>
