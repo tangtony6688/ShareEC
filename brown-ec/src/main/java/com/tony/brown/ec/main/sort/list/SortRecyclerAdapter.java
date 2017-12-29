@@ -14,6 +14,7 @@ import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.ui.recycler.MultipleRecyclerAdapter;
 import com.tony.brown.ui.recycler.MultipleViewHolder;
+import com.tony.brown.util.log.BrownLogger;
 
 import java.util.List;
 

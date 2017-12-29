@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_sort"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/toolbar_background"

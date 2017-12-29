@@ -49,9 +49,22 @@ public class RefreshHandler implements
             @Override
             public void run() {
                 // 进行一些网络请求
+                RestClient.builder()
+                        .url("index.php")
+                        .success(new ISuccess() {
+                            @Override
+                            public void onSuccess(String response) {
+                                CONVERTER.clearData();
+                                mAdapter.replaceData(CONVERTER.setJsonData(response).convert());
+                                mAdapter.loadMoreComplete();
+                                BEAN.setPageIndex(1);
+                            }
+                        })
+                        .build()
+                        .get();
                 REFRESH_LAYOUT.setRefreshing(false);
             }
-        }, 2000);
+        }, 1000);
     }
 
     public void firstPage(String url) {
@@ -62,7 +75,6 @@ public class RefreshHandler implements
                     @Override
                     public void onSuccess(String response) {
                         final JSONObject object = JSON.parseObject(response);
-                        BrownLogger.json("INDEX_OBJECT", response);
                         BEAN.setTotal(object.getInteger("total"))
                                 .setPageSize(object.getInteger("page_size"));
                         //设置Adapter

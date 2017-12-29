@@ -49,11 +49,11 @@ public class MultipleRecyclerAdapter extends
         return new MultipleRecyclerAdapter(converter.convert());
     }
 
-//    public void refresh(List<MultipleItemEntity> data) {
-//        getData().clear();
-//        setNewData(data);
-//        notifyDataSetChanged();
-//    }
+    public void refresh(List<MultipleItemEntity> data) {
+        getData().clear();
+        setNewData(data);
+        notifyDataSetChanged();
+    }
 
     private void init() {
         //设置不同的item布局
@@ -75,6 +75,7 @@ public class MultipleRecyclerAdapter extends
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
+        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
         final String text;
         final String imageUrl;
         final ArrayList<String> bannerImages;
@@ -84,7 +85,7 @@ public class MultipleRecyclerAdapter extends
                 holder.setText(R.id.text_single, text);
                 break;
             case ItemType.IMAGE:
-                imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                imageUrl = preImageUrl + entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(RECYCLER_OPTIONS)
@@ -92,7 +93,7 @@ public class MultipleRecyclerAdapter extends
                 break;
             case ItemType.TEXT_IMAGE:
                 text = entity.getField(MultipleFields.TEXT);
-                imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                imageUrl = preImageUrl + entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(RECYCLER_OPTIONS)
