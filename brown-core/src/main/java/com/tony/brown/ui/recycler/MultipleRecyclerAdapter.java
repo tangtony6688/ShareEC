@@ -75,7 +75,7 @@ public class MultipleRecyclerAdapter extends
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
-        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = "http://172.19.128.209:8080/~Tony/BrownServer/data/img/";
         final String text;
         final String imageUrl;
         final ArrayList<String> bannerImages;

@@ -19,4 +19,20 @@
 
     <string name="sort_title">分类</string>
     <string name="sort_content_more">more ></string>
+
+    <string name="cart_clear">清空</string>
+    <string name="cart_title">购物车</string>
+    <string name="cart_delete">删除</string>
+    <string name="cart_check_circle">{fa-check-circle}</string>
+    <string name="cart_select_all">全选</string>
+    <string name="cart_total">合计: </string>
+    <string name="cart_example_number">￥0.01</string>
+    <string name="cart_settle_account">结算</string>
+
+    <string name="cartItem_example_title">商品标题</string>
+    <string name="cartItem_example_description">商品描述</string>
+    <string name="cartItem_example_price">￥2.00</string>
+    <string name="cartItem_minus">{fa-minus-square-o}</string>
+    <string name="cartItem_plus">{fa-plus-square-o}</string>
+    <string name="cartItem_example_count">1</string>
 </resources>

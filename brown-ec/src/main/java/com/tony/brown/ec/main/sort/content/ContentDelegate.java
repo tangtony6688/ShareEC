@@ -10,6 +10,8 @@ import android.view.View;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
+import com.tony.brown.ec.main.EcBottomDelegate;
+import com.tony.brown.ec.main.sort.SortDelegate;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.util.log.BrownLogger;
@@ -61,9 +63,10 @@ public class ContentDelegate extends BrownDelegate {
                     public void onSuccess(String response) {
                         BrownLogger.json("MCONTENT", response);
                         mData = new SectionDataConverter().convert(response);
+                        final SortDelegate sortDelegate = getParentDelegate();
                         final SectionAdapter sectionAdapter =
                                 new SectionAdapter(R.layout.item_section_content,
-                                        R.layout.item_section_header, mData);
+                                        R.layout.item_section_header, mData, sortDelegate);
                         mRecyclerView.setAdapter(sectionAdapter);
                     }
                 })

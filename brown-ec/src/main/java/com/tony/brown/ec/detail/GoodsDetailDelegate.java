@@ -16,7 +16,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 public class GoodsDetailDelegate extends BrownDelegate {
 
-    public static GoodsDetailDelegate create() {
+    public static GoodsDetailDelegate create(int goodsId) {
         return new GoodsDetailDelegate();
     }
 

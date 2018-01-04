@@ -21,23 +21,22 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
         android:background="@color/toolbar_background"
-        android:paddingTop="10dp"
         app:layout_behavior="com.tony.brown.ec.main.index.TranslucentBehavior">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:weightSum="6">
+            android:weightSum="8">
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_scan"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:paddingEnd="20dp"
                 android:text="@string/index_scan"
                 android:textColor="@android:color/white"
                 android:textSize="25sp" />
@@ -46,8 +45,9 @@
                 android:id="@+id/et_search_view"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_weight="4"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="6"
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:hint="@string/index_search" />
@@ -55,8 +55,10 @@
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_message"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/index_message"

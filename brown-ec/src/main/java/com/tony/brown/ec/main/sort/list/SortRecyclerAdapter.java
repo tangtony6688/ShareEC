@@ -29,7 +29,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     private final SortDelegate DELEGATE;
     private int mPrePosition = 0;
 
-    protected SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
+    SortRecyclerAdapter(List<MultipleItemEntity> data, SortDelegate delegate) {
         super(data);
         this.DELEGATE = delegate;
         //添加垂直菜单布局
