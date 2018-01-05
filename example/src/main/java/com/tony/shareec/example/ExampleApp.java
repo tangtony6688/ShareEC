@@ -22,7 +22,7 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withLoaderDelayed(1000)
-                .withApiHost("http://172.19.128.209:8080/~Tony/BrownServer/api/")
+                .withApiHost("http://192.168.199.100:8080/~Tony/BrownServer/api/")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")

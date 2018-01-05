@@ -12,6 +12,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.tony.brown.app.Brown;
 import com.tony.brown.ec.R;
+import com.tony.brown.net.RestClient;
+import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.ui.recycler.MultipleRecyclerAdapter;
@@ -26,6 +28,8 @@ import java.util.List;
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     private boolean mIsSelectedAll = false;
+    private ICartItemListener mCartItemListener = null;
+    private double mTotalPrice = 0.00;
 
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -34,6 +38,13 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+        //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice += total;
+        }
         //添加购物测item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
@@ -42,10 +53,18 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         this.mIsSelectedAll = isSelectedAll;
     }
 
+    public void setCartItemListener(ICartItemListener listener) {
+        this.mCartItemListener = listener;
+    }
+
+    public double getTotalPrice() {
+        return mTotalPrice;
+    }
+
     @Override
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
-        final String preImageUrl = "http://172.19.128.209:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
         switch (holder.getItemViewType()) {
             case ShopCartItemType.SHOP_CART_ITEM:
                 //先取出所有值
@@ -98,6 +117,60 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                             iconIsSelected.setTextColor(ContextCompat.getColor(Brown.getApplicationContext(), R.color.app_main));
                             entity.setField(ShopCartItemFields.IS_SELECTED, true);
                         }
+                    }
+                });
+
+                //添加加减事件
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        if (Integer.parseInt(tvCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("shop_cart_count.php")
+                                    .loader(mContext)
+                                    .params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+                                            if (mCartItemListener != null) {
+                                                mTotalPrice -= price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListener.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .post();
+                        }
+                    }
+                });
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        RestClient.builder()
+                                .url("shop_cart_count.php")
+                                .loader(mContext)
+                                .params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        if (mCartItemListener != null) {
+                                            mTotalPrice += price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .post();
                     }
                 });
                 break;

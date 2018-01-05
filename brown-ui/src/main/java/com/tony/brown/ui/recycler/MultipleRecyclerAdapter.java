@@ -11,7 +11,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.tony.brown.R;
+
+import com.flj.latte.ui.R;
 import com.tony.brown.ui.banner.BannerCreator;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class MultipleRecyclerAdapter extends
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
-        final String preImageUrl = "http://172.19.128.209:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
         final String text;
         final String imageUrl;
         final ArrayList<String> bannerImages;

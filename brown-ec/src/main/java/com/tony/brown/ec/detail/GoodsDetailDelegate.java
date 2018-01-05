@@ -1,6 +1,7 @@
 package com.tony.brown.ec.detail;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
@@ -26,7 +27,7 @@ public class GoodsDetailDelegate extends BrownDelegate {
     }
 
     @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
     }
 

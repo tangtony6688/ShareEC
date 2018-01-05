@@ -28,6 +28,7 @@
     <string name="cart_total">合计: </string>
     <string name="cart_example_number">￥0.01</string>
     <string name="cart_settle_account">结算</string>
+    <string name="cart_stub">购物车竟然是空的</string>
 
     <string name="cartItem_example_title">商品标题</string>
     <string name="cartItem_example_description">商品描述</string>
@@ -35,4 +36,5 @@
     <string name="cartItem_minus">{fa-minus-square-o}</string>
     <string name="cartItem_plus">{fa-plus-square-o}</string>
     <string name="cartItem_example_count">1</string>
+
 </resources>

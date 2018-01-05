@@ -43,7 +43,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
     @Override
     protected void convert(BaseViewHolder holder, SectionBean item) {
         //item.t返回SectionBean类型
-        final String preImageUrl = "http://172.19.128.209:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
         final String thumb = item.t.getGoodsThumb();
         final String name = item.t.getGoodsName();
         final int goodsId = item.t.getGoodsId();

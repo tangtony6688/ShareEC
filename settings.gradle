@@ -1,1 +1,1 @@
-include ':example', ':brown-annotations', ':brown-compiler', ':brown-core', ':brown-ec'
+include ':example', ':brown-annotations', ':brown-compiler', ':brown-core', ':brown-ec', ':brown-ui'

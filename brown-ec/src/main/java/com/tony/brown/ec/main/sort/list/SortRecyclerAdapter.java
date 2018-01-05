@@ -14,7 +14,6 @@ import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.ui.recycler.MultipleRecyclerAdapter;
 import com.tony.brown.ui.recycler.MultipleViewHolder;
-import com.tony.brown.util.log.BrownLogger;
 
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
     private void switchContent(ContentDelegate delegate) {
         final BrownDelegate contentDelegate =
-                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentDelegate.class);
         if (contentDelegate != null) {
             contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
         }
