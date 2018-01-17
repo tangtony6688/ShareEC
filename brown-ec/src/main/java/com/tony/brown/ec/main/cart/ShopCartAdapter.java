@@ -1,5 +1,6 @@
 package com.tony.brown.ec.main.cart;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
@@ -61,6 +62,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         return mTotalPrice;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
@@ -88,7 +90,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 //赋值
                 tvTitle.setText(title);
                 tvDesc.setText(desc);
-                tvPrice.setText(String.valueOf(price));
+                tvPrice.setText("￥" + String.valueOf(price));
                 tvCount.setText(String.valueOf(count));
                 Glide.with(mContext)
                         .load(thumb)

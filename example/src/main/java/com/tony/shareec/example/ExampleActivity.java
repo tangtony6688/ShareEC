@@ -37,13 +37,13 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     @Override
     public void onSignInSuccess() {
 //        Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().replaceFragment(new EcBottomDelegate(), false);
     }
 
     @Override
     public void onSignUpSuccess() {
 //        Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().replaceFragment(new EcBottomDelegate(), false);
     }
 
     @Override
@@ -51,11 +51,11 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SIGNED:
 //                Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new EcBottomDelegate());
+                getSupportDelegate().replaceFragment(new EcBottomDelegate(), false);
                 break;
             case NOT_SIGNED:
 //                Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
-                getSupportDelegate().startWithPop(new SignInDelegate());
+                getSupportDelegate().replaceFragment(new SignInDelegate(), false);
                 break;
             default:
                 break;

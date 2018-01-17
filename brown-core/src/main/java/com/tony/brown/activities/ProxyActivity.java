@@ -11,6 +11,7 @@ import com.tony.brown.delegates.BrownDelegate;
 import me.yokeyword.fragmentation.ExtraTransaction;
 import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.SupportActivityDelegate;
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
@@ -64,7 +65,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     @Override
     public void setFragmentAnimator(FragmentAnimator fragmentAnimator) {
-        DELEGATE.setFragmentAnimator(fragmentAnimator);
+        DELEGATE.setFragmentAnimator(new DefaultHorizontalAnimator());
     }
 
     @Override

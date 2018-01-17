@@ -110,7 +110,7 @@
                 android:gravity="center"
                 android:textColor="@color/icon_wechat"
                 android:textSize="40sp"
-                android:text="@string/sigon_in_wechat" />
+                android:text="@string/sign_in_wechat" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 

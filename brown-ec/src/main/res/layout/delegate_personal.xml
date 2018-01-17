@@ -1,12 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/app_background">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我的"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!--头像部分-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@color/toolbar_background">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/avatar" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:text="@string/personal_example_name"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <!--订单部分-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:text="@string/personal_my_order"
+                android:textColor="@android:color/black" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_all_order"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/tv_all_account_arrow"
+                android:gravity="center"
+                android:text="@string/personal_all_order"
+                android:textColor="@android:color/darker_gray"
+                tools:ignore="RelativeOverlap" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/tv_all_account_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/personal_chevron_right"
+                android:textColor="@android:color/darker_gray" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@android:color/white"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_pay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/personal_pay"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/personal_pay_text"
+                    android:textSize="12sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_receive"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/personal_receive"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/personal_receive_text"
+                    android:textSize="12sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_evaluate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/personal_evaluate"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/personal_evaluate_text"
+                    android:textSize="12sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/ll_after_market"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="@string/personal_after_market"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/personal_after_market_text"
+                    android:textSize="12sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_personal_setting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</ScrollView>

@@ -44,9 +44,6 @@ dependencies {
     api 'com.bigkoo:convenientbanner:2.0.5'
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     //Google AutoValue
-    provided "com.google.auto.value:auto-value:1.5"
-    annotationProcessor "com.google.auto.value:auto-value:1.5"
-    //ButterKnife依赖
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
+    provided "com.google.auto.value:auto-value:1.5.1"
+    annotationProcessor "com.google.auto.value:auto-value:1.5.1"
 }

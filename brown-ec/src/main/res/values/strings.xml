@@ -11,7 +11,7 @@
     <string name="sign_in">登录</string>
     <string name="sign_in_to_sign_up">还没有账户？现在注册吧</string>
     <string name="sign_in_third_party">第三方账号快捷登录</string>
-    <string name="sigon_in_wechat">{fa-weixin}</string>
+    <string name="sign_in_wechat">{fa-weixin}</string>
 
     <string name="index_scan">{fa-qrcode}</string>
     <string name="index_search">搜索</string>
@@ -37,4 +37,25 @@
     <string name="cartItem_plus">{fa-plus-square-o}</string>
     <string name="cartItem_example_count">1</string>
 
+    <string name="pay_alipay">{icon-ali-pay}</string>
+    <string name="pay_cancel">取消支付</string>
+
+    <string name="personal_example_name">糖宝</string>
+    <string name="personal_my_order">我的订单</string>
+    <string name="personal_all_order">全部订单</string>
+    <string name="personal_chevron_right">{fa-chevron-right}</string>
+    <string name="personal_pay">{fa-credit-card}</string>
+    <string name="personal_receive">{fa-truck}</string>
+    <string name="personal_evaluate">{fa-clone}</string>
+    <string name="personal_after_market">{fa-comments-o}</string>
+    <string name="personal_pay_text">待付款</string>
+    <string name="personal_receive_text">待收货</string>
+    <string name="personal_evaluate_text">待评价</string>
+    <string name="personal_after_market_text">售后</string>
+    <string name="personal_unset">未设置</string>
+
+    <string name="personal_orderList_title">title</string>
+    <string name="personal_orderList_price">price</string>
+    <string name="personal_orderList_time">time</string>
+    <string name="personal_orderList">订单列表</string>
 </resources>

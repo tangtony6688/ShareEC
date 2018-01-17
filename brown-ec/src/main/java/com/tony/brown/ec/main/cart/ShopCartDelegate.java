@@ -1,5 +1,6 @@
 package com.tony.brown.ec.main.cart;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,16 +11,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.tony.brown.delegates.bottom.BottomItemDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
-import com.tony.brown.ec.main.EcBottomDelegate;
+import com.tony.brown.ec.pay.FastPay;
+import com.tony.brown.ec.pay.IAlPayResultListener;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
-import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.util.log.BrownLogger;
 
@@ -34,7 +35,7 @@ import butterknife.OnClick;
  * Created by Tony on 2017/12/15.
  */
 
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, ICartItemListener, IAlPayResultListener {
 
     private ShopCartAdapter mAdapter = null;
     private double mTotalPrice = 0.00;
@@ -65,6 +66,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @OnClick(R2.id.tv_top_shop_cart_remove_selected)
     void onClickRemoveSelectedItem() {
         if (mAdapter.getItemCount() != 0) {
@@ -100,20 +102,21 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                     mAdapter.remove(removePosition);
                     mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount());
                     mTotalPrice -= removePrice * removeCount;
-                    mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+                    mTvTotalPrice.setText("￥" + String.valueOf(mTotalPrice));
                 }
             }
             checkItemCount();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
         if (mAdapter.getItemCount() != 0) {
             mAdapter.getData().clear();
             mAdapter.notifyDataSetChanged();
             mTotalPrice = 0.00;
-            mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+            mTvTotalPrice.setText("￥" + String.valueOf(mTotalPrice));
             checkItemCount();
         }
     }
@@ -121,6 +124,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay(){
 //        createOrder();
+//        FastPay.create(this).beginPayDialog();
     }
 
     //创建订单，注意，和支付是没有关系的
@@ -137,6 +141,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                     @Override
                     public void onSuccess(String response) {
                         //进行具体的支付
+                        BrownLogger.d("ORDER", response);
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                                .setPayResultListener(ShopCartDelegate.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
                     }
                 })
                 .build()
@@ -190,6 +200,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
                 .get();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSuccess(String response) {
         final ArrayList<MultipleItemEntity> data =
@@ -202,13 +213,39 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
         mTotalPrice = mAdapter.getTotalPrice();
-        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+        mTvTotalPrice.setText("￥" + String.valueOf(mTotalPrice));
         checkItemCount();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onItemClick(double itemTotalPrice) {
         final double price = mAdapter.getTotalPrice();
-        mTvTotalPrice.setText(String.valueOf(price));
+        mTvTotalPrice.setText("￥" + String.valueOf(price));
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }
