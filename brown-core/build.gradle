@@ -35,8 +35,8 @@ dependencies {
     api 'com.android.support:support-v4:27.0.2'
     api 'com.android.support:appcompat-v7:27.0.2'
     api 'com.android.support:design:27.0.2'
-    compile 'com.android.support:cardview-v7:27.0.2'
-    compile 'com.android.support:multidex:1.0.2'
+    api 'com.android.support:cardview-v7:27.0.2'
+    api 'com.android.support:multidex:1.0.2'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     //Fragment依赖
     api 'me.yokeyword:fragmentation:1.1.9'
@@ -66,13 +66,15 @@ dependencies {
     //沉浸式状态栏
     api'com.github.niorgai:StatusBarCompat:2.1.4'
     //Google AutoValue
-    provided "com.google.auto.value:auto-value:1.5"
-    annotationProcessor "com.google.auto.value:auto-value:1.5"
+    provided "com.google.auto.value:auto-value:1.5.1"
+    annotationProcessor "com.google.auto.value:auto-value:1.5.1"
     //工具包
-    compile 'com.blankj:utilcode:1.9.3'
+    api 'com.blankj:utilcode:1.9.3'
     //动态权限处理
-
+    api 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
     //图片剪裁
+    api 'com.github.yalantis:ucrop:2.2.1-native'
     //二维码扫描
     //RxJava
     api 'io.reactivex.rxjava2:rxjava:2.1.5'

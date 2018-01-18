@@ -22,7 +22,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="@string/personal_orderList"
+                android:text="@string/personal_profile"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
@@ -31,7 +31,7 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_order_list"
+        android:id="@+id/rv_user_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

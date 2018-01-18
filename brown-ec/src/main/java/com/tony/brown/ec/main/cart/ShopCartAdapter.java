@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.tony.brown.app.Brown;
 import com.tony.brown.ec.R;
+import com.tony.brown.net.ApiHost;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.ui.recycler.MultipleFields;
@@ -66,7 +67,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     @Override
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
-        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = ApiHost.IMG_API_HOST;
         switch (holder.getItemViewType()) {
             case ShopCartItemType.SHOP_CART_ITEM:
                 //先取出所有值

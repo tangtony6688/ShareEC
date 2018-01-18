@@ -7,6 +7,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.tony.brown.app.Brown;
 import com.tony.brown.ec.database.DatabaseManager;
 import com.tony.brown.ec.icon.FontEcModule;
+import com.tony.brown.net.ApiHost;
 import com.tony.brown.net.interceptors.DebugInterceptor;
 
 /**
@@ -22,7 +23,7 @@ public class ExampleApp extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .withLoaderDelayed(1000)
-                .withApiHost("http://192.168.199.100:8080/~Tony/BrownServer/api/")
+                .withApiHost(ApiHost.API_HOST)
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")

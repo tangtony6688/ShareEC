@@ -2,14 +2,12 @@
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/toolbar_background"
-        android:gravity="center">
+        android:background="@color/toolbar_background">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,16 +20,29 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="@string/personal_orderList"
+                android:text="@string/personal_address"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/icon_address_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="@string/personal_address_plus"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_order_list"
+        android:id="@+id/rv_address"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

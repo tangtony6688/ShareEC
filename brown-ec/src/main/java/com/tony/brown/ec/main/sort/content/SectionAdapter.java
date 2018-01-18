@@ -12,6 +12,7 @@ import com.tony.brown.ec.R;
 import com.tony.brown.ec.detail.GoodsDetailDelegate;
 import com.tony.brown.ec.main.EcBottomDelegate;
 import com.tony.brown.ec.main.sort.SortDelegate;
+import com.tony.brown.net.ApiHost;
 import com.tony.brown.util.log.BrownLogger;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
     @Override
     protected void convert(BaseViewHolder holder, SectionBean item) {
         //item.t返回SectionBean类型
-        final String preImageUrl = "http://192.168.199.100:8080/~Tony/BrownServer/data/img/";
+        final String preImageUrl = ApiHost.IMG_API_HOST;
         final String thumb = item.t.getGoodsThumb();
         final String name = item.t.getGoodsName();
         final int goodsId = item.t.getGoodsId();

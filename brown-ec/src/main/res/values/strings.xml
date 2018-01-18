@@ -58,4 +58,19 @@
     <string name="personal_orderList_price">price</string>
     <string name="personal_orderList_time">time</string>
     <string name="personal_orderList">订单列表</string>
+    <string name="personal_profile">个人信息</string>
+    <string name="personal_name">姓名</string>
+    <string name="personal_confirm">提交</string>
+    <string name="personal_phone">电话</string>
+    <string name="personal_delete">删除</string>
+
+    <string name="personal_address">地址管理</string>
+    <string name="personal_address_plus">{fa-plus-square-o}</string>
+
+    <string name="goods_detail">商品详情</string>
+    <string name="goods_detail_favor">{fa-heart-o}</string>
+    <string name="goods_detail_cart">{fa-shopping-cart}</string>
+    <string name="goods_detail_add_cart">加入购物车</string>
+    <string name="goods_detail_chevron_left">{fa-chevron-left}</string>
+    <string name="goods_detail_price_icon">￥</string>
 </resources>
