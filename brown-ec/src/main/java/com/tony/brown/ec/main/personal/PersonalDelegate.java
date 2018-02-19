@@ -3,10 +3,12 @@ package com.tony.brown.ec.main.personal;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.tony.brown.app.AccountManager;
 import com.tony.brown.delegates.bottom.BottomItemDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
@@ -16,12 +18,17 @@ import com.tony.brown.ec.main.personal.list.ListBean;
 import com.tony.brown.ec.main.personal.list.ListItemType;
 import com.tony.brown.ec.main.personal.order.OrderListDelegate;
 import com.tony.brown.ec.main.personal.profile.UserProfileDelegate;
+import com.tony.brown.net.RestClient;
+import com.tony.brown.net.callback.ISuccess;
+import com.tony.brown.util.log.BrownLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.tony.brown.util.storage.BrownPreference.getUserId;
 
 /**
  * Created by Tony on 2017/12/15.
@@ -31,9 +38,13 @@ public class PersonalDelegate extends BottomItemDelegate {
 
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings = null;
+    @BindView(R2.id.tv_user_name)
+    AppCompatTextView mTvUserName = null;
 
     public static final String ORDER_TYPE = "ORDER_TYPE";
     private Bundle mArgs = null;
+
+    private long mUserId = 0;
 
     @Override
     public Object setLayout() {
@@ -61,6 +72,8 @@ public class PersonalDelegate extends BottomItemDelegate {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mArgs = new Bundle();
+        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
+        onUserNameClick();
     }
 
     @Override
@@ -89,5 +102,21 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
         mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
+    }
+
+    @OnClick(R2.id.tv_user_name)
+    void onUserNameClick() {
+        RestClient.builder()
+                .url("profile_name.php")
+                .params("user_id", mUserId)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        mTvUserName.setText(response);
+                    }
+                })
+                .build()
+                .get();
     }
 }

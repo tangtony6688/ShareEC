@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.tony.brown.app.AccountManager;
 import com.tony.brown.delegates.bottom.BottomItemDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
@@ -21,6 +22,7 @@ import com.tony.brown.ec.pay.FastPay;
 import com.tony.brown.ec.pay.IAlPayResultListener;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
+import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.util.log.BrownLogger;
 
@@ -31,6 +33,8 @@ import java.util.WeakHashMap;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.tony.brown.util.storage.BrownPreference.getUserId;
+
 /**
  * Created by Tony on 2017/12/15.
  */
@@ -39,6 +43,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 
     private ShopCartAdapter mAdapter = null;
     private double mTotalPrice = 0.00;
+    private long mUserId = -1;
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRecyclerView = null;
@@ -80,11 +85,39 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 
             //循环取出要删除的entity
             final List<MultipleItemEntity> deleteEntities = new ArrayList<>();
+            final List<String> deleteId = new ArrayList<>();
             for (MultipleItemEntity entity : data) {
                 final boolean isSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
+                final String id = String.valueOf(entity.getField(MultipleFields.ID));
                 if (isSelected) {
+                    BrownLogger.d("DeleteId", id);
                     deleteEntities.add(entity);
+                    deleteId.add(id);
                 }
+            }
+
+            //构造数据库删除参数，用String类型传参
+            StringBuilder deleteString = new StringBuilder(mUserId + "&");
+            for (String id : deleteId) {
+                deleteString.append("_");
+                deleteString.append(id);
+            }
+
+            //访问数据库，执行删除操作
+            if (deleteId.size() > 0) {
+                BrownLogger.d("DeleteString", deleteString);
+                RestClient.builder()
+                        .url("shop_cart_delete.php")
+                        .params("delete_id", deleteString)
+                        .loader(getContext())
+                        .success(new ISuccess() {
+                            @Override
+                            public void onSuccess(String response) {
+                                BrownLogger.d("DeleteResp", response);
+                            }
+                        })
+                        .build()
+                        .get();
             }
 
             //循环删除
@@ -113,6 +146,22 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     @OnClick(R2.id.tv_top_shop_cart_clear)
     void onClickClear() {
         if (mAdapter.getItemCount() != 0) {
+            //访问数据库，执行清空操作
+            StringBuilder deleteString = new StringBuilder(mUserId + "&");
+            RestClient.builder()
+                    .url("shop_cart_delete.php")
+                    .params("delete_id", deleteString)
+                    .loader(getContext())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            BrownLogger.d("ClearResp", response);
+                        }
+                    })
+                    .build()
+                    .get();
+
+            //清空本地数据
             mAdapter.getData().clear();
             mAdapter.notifyDataSetChanged();
             mTotalPrice = 0.00;
@@ -121,14 +170,26 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
         }
     }
 
+    //刷新页面
+    @OnClick(R2.id.tv_top_shop_cart_refresh)
+    void onClickRefresh() {
+        RestClient.builder()
+                .url("shop_cart.php")
+                .params("user_id", mUserId)
+                .loader(getContext())
+                .success(this)
+                .build()
+                .get();
+    }
+
     @OnClick(R2.id.tv_shop_cart_pay)
-    void onClickPay(){
+    void onClickPay() {
 //        createOrder();
 //        FastPay.create(this).beginPayDialog();
     }
 
     //创建订单，注意，和支付是没有关系的
-    private void createOrder(){
+    private void createOrder() {
         final String orderUrl = "你的生成订单的API";
         final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
         //加入参数
@@ -158,7 +219,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     private void checkItemCount() {
         final int count = mAdapter.getItemCount();
         if (count == 0) {
-            final View stubView = mStubNoItem.inflate();
+//            final View stubView = mStubNoItem.inflate();
 //            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.tv_stub_to_buy);
 //            tvToBuy.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -173,9 +234,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 //                    ecBottomDelegate.changeColor(indexTab);
 //                }
 //            });
+            mStubNoItem.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
         } else {
+            mStubNoItem.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -192,8 +256,11 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
+        BrownLogger.d("UserId", mUserId);
         RestClient.builder()
                 .url("shop_cart.php")
+                .params("user_id", mUserId)
                 .loader(getContext())
                 .success(this)
                 .build()

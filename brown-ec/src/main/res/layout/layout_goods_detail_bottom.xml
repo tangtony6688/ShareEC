@@ -17,7 +17,7 @@
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/icon_favor"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
@@ -36,7 +36,7 @@
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/icon_shop_cart"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"

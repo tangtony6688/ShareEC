@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.tony.brown.app.AccountManager;
 import com.tony.brown.ec.database.DatabaseManager;
 import com.tony.brown.ec.database.UserProfile;
+import com.tony.brown.util.log.BrownLogger;
 
 import java.util.Objects;
 
@@ -29,7 +30,11 @@ public class SignHandler {
 
             //已经注册并登录成功了
             AccountManager.setSignState(true);
+            AccountManager.setUserId(userId);
+            AccountManager.setUserName(name);
+            AccountManager.setGender(gender);
             signListener.onSignUpSuccess();
+
         }
         return message;
     }
@@ -49,6 +54,9 @@ public class SignHandler {
 
             //已经注册并登录成功了
             AccountManager.setSignState(true);
+            AccountManager.setUserId(userId);
+            AccountManager.setUserName(name);
+            AccountManager.setGender(gender);
             signListener.onSignInSuccess();
         }
         return message;

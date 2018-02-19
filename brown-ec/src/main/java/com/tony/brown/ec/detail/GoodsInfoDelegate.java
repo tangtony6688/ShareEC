@@ -57,10 +57,11 @@ public class GoodsInfoDelegate extends BrownDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
         final String name = mData.getString("name");
         final String desc = mData.getString("description");
-        final double price = mData.getDouble("price");
+        final Double price = mData.getDouble("price");
+        final String sPrice = String.valueOf(price).split("\\.")[0];
 
         mGoodsInfoTitle.setText(name);
         mGoodsInfoDesc.setText(desc);
-        mGoodsInfoPrice.setText("￥" + String.valueOf(price));
+        mGoodsInfoPrice.setText("￥" + sPrice + "/天");
     }
 }

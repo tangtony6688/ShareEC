@@ -64,9 +64,42 @@ public final class BrownPreference {
                 .apply();
     }
 
+    public static void setUserId(String key, long flag) {
+        getAppPreference()
+                .edit()
+                .putLong(key, flag)
+                .apply();
+    }
+
+    public static void setUserName(String key, String flag) {
+        getAppPreference()
+                .edit()
+                .putString(key, flag)
+                .apply();
+    }
+
+    public static void setGender(String key, String flag) {
+        getAppPreference()
+                .edit()
+                .putString(key, flag)
+                .apply();
+    }
+
     public static boolean getAppFlag(String key) {
         return getAppPreference()
                 .getBoolean(key, false);
+    }
+
+    public static long getUserId(String key) {
+        return getAppPreference().getLong(key, -1);
+    }
+
+    public static String getUserName(String key) {
+        return getAppPreference().getString(key, "用户名");
+    }
+
+    public static String getGender(String key) {
+        return getAppPreference().getString(key, "保密");
     }
 
 }

@@ -29,6 +29,7 @@
                 android:textSize="18sp" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_top_shop_cart_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

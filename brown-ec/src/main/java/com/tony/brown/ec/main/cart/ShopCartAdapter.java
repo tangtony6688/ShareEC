@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.tony.brown.app.AccountManager;
 import com.tony.brown.app.Brown;
 import com.tony.brown.ec.R;
 import com.tony.brown.net.ApiHost;
@@ -20,8 +21,12 @@ import com.tony.brown.ui.recycler.MultipleFields;
 import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.ui.recycler.MultipleRecyclerAdapter;
 import com.tony.brown.ui.recycler.MultipleViewHolder;
+import com.tony.brown.util.log.BrownLogger;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.tony.brown.util.storage.BrownPreference.getUserId;
 
 /**
  * Created by Tony on 2018/1/2.
@@ -32,6 +37,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     private boolean mIsSelectedAll = false;
     private ICartItemListener mCartItemListener = null;
     private double mTotalPrice = 0.00;
+    private long mUserId = -1;
+
 
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -68,15 +75,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
         final String preImageUrl = ApiHost.IMG_API_HOST;
+        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
         switch (holder.getItemViewType()) {
             case ShopCartItemType.SHOP_CART_ITEM:
                 //先取出所有值
                 final int id = entity.getField(MultipleFields.ID);
-                final String thumb = entity.getField(MultipleFields.IMAGE_URL);
+                final String thumb = preImageUrl + entity.getField(MultipleFields.IMAGE_URL);
                 final String title = entity.getField(ShopCartItemFields.TITLE);
                 final String desc = entity.getField(ShopCartItemFields.DESC);
                 final int count = entity.getField(ShopCartItemFields.COUNT);
                 final double price = entity.getField(ShopCartItemFields.PRICE);
+                final String sPrice = String.valueOf(price).split("\\.")[0];
 
                 //取出所有控件
                 final AppCompatImageView imgThumb = holder.getView(R.id.image_item_shop_cart);
@@ -90,8 +99,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
                 //赋值
                 tvTitle.setText(title);
-                tvDesc.setText(desc);
-                tvPrice.setText("￥" + String.valueOf(price));
+                tvDesc.setText(null);
+                tvPrice.setText("￥" + sPrice + "/天");
                 tvCount.setText(String.valueOf(count));
                 Glide.with(mContext)
                         .load(thumb)
@@ -128,14 +137,18 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     @Override
                     public void onClick(View v) {
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        final int currentId = entity.getField(MultipleFields.ID);
                         if (Integer.parseInt(tvCount.getText().toString()) > 1) {
                             RestClient.builder()
-                                    .url("shop_cart_count.php")
-                                    .loader(mContext)
+                                    .url("shop_cart_minus.php")
+                                    .params("uId", mUserId)
+                                    .params("id", currentId)
                                     .params("count", currentCount)
                                     .success(new ISuccess() {
                                         @Override
                                         public void onSuccess(String response) {
+                                            BrownLogger.d("MinusResp", response);
+                                            entity.setField(ShopCartItemFields.COUNT, currentCount-1);
                                             int countNum = Integer.parseInt(tvCount.getText().toString());
                                             countNum--;
                                             tvCount.setText(String.valueOf(countNum));
@@ -155,13 +168,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     @Override
                     public void onClick(View v) {
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        final int currentId = entity.getField(MultipleFields.ID);
                         RestClient.builder()
-                                .url("shop_cart_count.php")
-                                .loader(mContext)
+                                .url("shop_cart_plus.php")
+                                .params("uId", mUserId)
+                                .params("id", currentId)
                                 .params("count", currentCount)
                                 .success(new ISuccess() {
                                     @Override
                                     public void onSuccess(String response) {
+                                        BrownLogger.d("PlusResp", response);
+                                        entity.setField(ShopCartItemFields.COUNT, currentCount+1);
                                         int countNum = Integer.parseInt(tvCount.getText().toString());
                                         countNum++;
                                         tvCount.setText(String.valueOf(countNum));
