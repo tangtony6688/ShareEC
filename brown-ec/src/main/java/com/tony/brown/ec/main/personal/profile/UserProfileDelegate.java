@@ -91,6 +91,7 @@ public class UserProfileDelegate extends BrownDelegate {
         data.add(gender);
         data.add(birth);
 
+
         //设置RecyclerView
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
