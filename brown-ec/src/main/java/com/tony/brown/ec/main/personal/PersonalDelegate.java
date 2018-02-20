@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.tony.brown.util.storage.BrownPreference.getUserId;
+import static com.tony.brown.util.storage.BrownPreference.getUserName;
 
 /**
  * Created by Tony on 2017/12/15.

@@ -85,6 +85,13 @@ public final class BrownPreference {
                 .apply();
     }
 
+    public static void setBirth(String key, String flag) {
+        getAppPreference()
+                .edit()
+                .putString(key, flag)
+                .apply();
+    }
+
     public static boolean getAppFlag(String key) {
         return getAppPreference()
                 .getBoolean(key, false);
@@ -100,6 +107,10 @@ public final class BrownPreference {
 
     public static String getGender(String key) {
         return getAppPreference().getString(key, "保密");
+    }
+
+    public static String getBirth(String key) {
+        return getAppPreference().getString(key, "未设置生日");
     }
 
 }

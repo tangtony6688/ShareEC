@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.tony.brown.app.AccountManager;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.main.personal.list.ListBean;
@@ -22,7 +23,13 @@ import com.tony.brown.util.callback.CallbackType;
 import com.tony.brown.util.callback.IGlobalCallback;
 import com.tony.brown.util.log.BrownLogger;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.tony.brown.app.AccountManager.setGender;
+import static com.tony.brown.util.storage.BrownPreference.getGender;
+import static com.tony.brown.util.storage.BrownPreference.getUserId;
 
 /**
  * Created by Tony on 2018/1/17.
@@ -40,6 +47,7 @@ public class UserProfileClickListener extends SimpleClickListener {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, final View view, int position) {
+        final long mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
         final ListBean bean = (ListBean) baseQuickAdapter.getData().get(position);
         final int id = bean.getId();
         switch (id) {
@@ -97,9 +105,23 @@ public class UserProfileClickListener extends SimpleClickListener {
                 //设置性别
                 getGenderDialog(new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, final int which) {
                         final AppCompatTextView textView = view.findViewById(R.id.tv_arrow_value);
                         textView.setText(mGenders[which]);
+                        RestClient.builder()
+                                .url("profile_gender_change.php")
+                                .params("user_id", mUserId)
+                                .params("user_gender", mGenders[which])
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        if (Objects.equals(response, "OK")) {
+                                            setGender(mGenders[which]);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .get();
                         dialog.cancel();
                     }
                 });
@@ -123,7 +145,16 @@ public class UserProfileClickListener extends SimpleClickListener {
 
     private void getGenderDialog(DialogInterface.OnClickListener listener) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(DELEGATE.getContext());
-        builder.setSingleChoiceItems(mGenders, 2, listener);
+        String currentGender = getGender(AccountManager.SignTag.USER_GENDER.name());
+        int genderNum = -1;
+        for (String gender :
+                mGenders) {
+            genderNum++;
+            if (Objects.equals(gender, currentGender)) {
+                break;
+            }
+        }
+        builder.setSingleChoiceItems(mGenders, genderNum, listener);
         builder.show();
     }
 

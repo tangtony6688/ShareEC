@@ -7,8 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.tony.brown.app.AccountManager;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
@@ -17,17 +15,14 @@ import com.tony.brown.ec.main.personal.list.ListAdapter;
 import com.tony.brown.ec.main.personal.list.ListBean;
 import com.tony.brown.ec.main.personal.list.ListItemType;
 import com.tony.brown.ec.main.personal.settings.NameDelegate;
-import com.tony.brown.net.RestClient;
-import com.tony.brown.net.callback.ISuccess;
-import com.tony.brown.util.log.BrownLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
+import static com.tony.brown.util.storage.BrownPreference.getBirth;
 import static com.tony.brown.util.storage.BrownPreference.getGender;
-import static com.tony.brown.util.storage.BrownPreference.getUserId;
 import static com.tony.brown.util.storage.BrownPreference.getUserName;
 
 /**
@@ -40,11 +35,6 @@ public class UserProfileDelegate extends BrownDelegate {
     RecyclerView mRecyclerView = null;
 
     final List<ListBean> data = new ArrayList<>();
-    private long mUserId = 0;
-    private String mImageUrl = "";
-    private String mUserName = "";
-    private String mGender = "";
-
 
 
     @Override
@@ -54,8 +44,6 @@ public class UserProfileDelegate extends BrownDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
-        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
 
         final ListBean image = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_AVATAR)
@@ -82,7 +70,7 @@ public class UserProfileDelegate extends BrownDelegate {
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(4)
                 .setText("生日")
-                .setValue("未设置生日")
+                .setValue(getBirthday())
                 .build();
 
 
@@ -90,7 +78,6 @@ public class UserProfileDelegate extends BrownDelegate {
         data.add(name);
         data.add(gender);
         data.add(birth);
-
 
         //设置RecyclerView
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -100,7 +87,7 @@ public class UserProfileDelegate extends BrownDelegate {
         mRecyclerView.addOnItemTouchListener(new UserProfileClickListener(this));
     }
 
-    private void refresh() {
-
+    private String getBirthday() {
+        return getBirth(AccountManager.SignTag.USER_BIRTH.name());
     }
 }

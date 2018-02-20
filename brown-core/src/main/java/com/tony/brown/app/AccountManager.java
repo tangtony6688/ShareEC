@@ -34,6 +34,10 @@ public class AccountManager {
         BrownPreference.setGender(SignTag.USER_GENDER.name(), gender);
     }
 
+    public static void setBirth(String birth) {
+        BrownPreference.setBirth(SignTag.USER_BIRTH.name(), birth);
+    }
+
     private static boolean isSignIn() {
         return BrownPreference.getAppFlag(SignTag.SIGN_TAG.name());
     }
