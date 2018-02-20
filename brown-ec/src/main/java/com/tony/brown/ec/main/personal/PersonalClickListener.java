@@ -6,6 +6,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.main.personal.list.ListBean;
+import com.tony.brown.ec.sign.SignInDelegate;
+
+import static com.tony.brown.app.AccountManager.setSignState;
 
 /**
  * Created by Tony on 2018/1/18.
@@ -29,6 +32,10 @@ public class PersonalClickListener extends SimpleClickListener {
                 break;
             case 2:
                 DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
+                break;
+            case 3:
+                setSignState(false);
+                DELEGATE.getParentDelegate().getSupportDelegate().replaceFragment(new SignInDelegate(), false);
                 break;
             default:
                 break;

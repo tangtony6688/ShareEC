@@ -93,9 +93,16 @@ public class PersonalDelegate extends BottomItemDelegate {
                 .setText("系统设置")
                 .build();
 
+        final ListBean signOut = new ListBean.Builder()
+                .setItemType(ListItemType.ITEM_TEXT)
+                .setId(3)
+                .setText("注销")
+                .build();
+
         final List<ListBean> data = new ArrayList<>();
         data.add(address);
         data.add(system);
+        data.add(signOut);
 
         //设置RecyclerView
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
