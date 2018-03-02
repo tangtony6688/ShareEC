@@ -14,6 +14,7 @@ import com.tony.brown.ec.sign.SignInDelegate;
 import com.tony.brown.ui.launcher.ILauncherListener;
 import com.tony.brown.ui.launcher.OnLauncherFinishTag;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
@@ -27,6 +28,18 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         }
         Brown.getConfigurator().withActivity(this);
         StatusBarCompat.translucentStatusBar(this, true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 
     @Override

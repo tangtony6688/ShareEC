@@ -15,6 +15,12 @@ android {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
         }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "fe52903172519adf54b5e4b4",
+                JPUSH_CHANNEL : "developer-default",
+        ]
     }
     buildTypes {
         release {
@@ -35,4 +41,7 @@ dependencies {
     annotationProcessor project(':brown-compiler')
     api 'com.facebook.stetho:stetho:1.5.0'
     api 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    // 极光推送
+    api 'cn.jiguang.sdk:jpush:3.1.1'
+    api 'cn.jiguang.sdk:jcore:1.1.9'
 }

@@ -18,6 +18,7 @@ import com.tony.brown.ec.main.personal.list.ListBean;
 import com.tony.brown.ec.main.personal.list.ListItemType;
 import com.tony.brown.ec.main.personal.order.OrderListDelegate;
 import com.tony.brown.ec.main.personal.profile.UserProfileDelegate;
+import com.tony.brown.ec.main.personal.settings.SettingsDelegate;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
 import com.tony.brown.util.log.BrownLogger;
@@ -90,6 +91,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 
