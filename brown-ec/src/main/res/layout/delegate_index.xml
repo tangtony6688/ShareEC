@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/index_scan"
-                android:textColor="@android:color/white"
+                android:textColor="@color/we_chat_black"
                 android:textSize="25sp" />
 
             <android.support.v7.widget.AppCompatEditText
@@ -50,7 +50,9 @@
                 android:layout_weight="6"
                 android:background="@android:color/white"
                 android:gravity="center"
-                android:hint="@string/index_search" />
+                android:hint="@string/index_search"
+                android:singleLine="true"
+                android:textColor="@color/we_chat_black" />
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_message"
@@ -62,7 +64,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/index_message"
-                android:textColor="@android:color/white"
+                android:textColor="@color/we_chat_black"
                 android:textSize="25sp" />
 
         </android.support.v7.widget.LinearLayoutCompat>

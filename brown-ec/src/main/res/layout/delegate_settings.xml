@@ -9,13 +9,22 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbar_background">
 
-        <android.support.v7.widget.AppCompatTextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/personal_settings"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:text="@string/personal_settings"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView

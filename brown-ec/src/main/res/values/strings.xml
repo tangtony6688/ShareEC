@@ -20,6 +20,19 @@
     <string name="sort_title">分类</string>
     <string name="sort_content_more">more ></string>
 
+    <string name="publish_title">发布</string>
+    <string name="publish_confirm">确认发布</string>
+    <string name="publish_brand">商品标题/品牌型号</string>
+    <string name="publish_info">商品简介</string>
+    <string name="publish_rent_text">租金:</string>
+    <string name="publish_rent_num">0.00</string>
+    <string name="publish_rent_unit">元/天</string>
+    <string name="publish_guarantee_text">押金:</string>
+    <string name="publish_guarantee_unit">元</string>
+    <string name="publish_count_text">数量:</string>
+    <string name="publish_class_text">类目:</string>
+    <string name="publish_class_hint">请选择所属类目</string>
+
     <string name="cart_clear">清空</string>
     <string name="cart_refresh">{fa-refresh}</string>
     <string name="cart_title">购物车</string>
@@ -59,6 +72,7 @@
     <string name="personal_orderList_price">price</string>
     <string name="personal_orderList_time">time</string>
     <string name="personal_orderList">订单列表</string>
+    <string name="personal_orderList_comment">评价晒单</string>
     <string name="personal_profile">个人信息</string>
     <string name="personal_name">姓名</string>
     <string name="personal_confirm">提交</string>
@@ -76,4 +90,7 @@
     <string name="goods_detail_add_cart">加入购物车</string>
     <string name="goods_detail_chevron_left">{fa-chevron-left}</string>
     <string name="goods_detail_price_icon">￥</string>
+
+    <string name="order_comment_mark">评分</string>
+    <string name="order_comment_text">写下评论</string>
 </resources>

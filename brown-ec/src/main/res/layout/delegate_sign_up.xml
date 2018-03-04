@@ -13,9 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:text="@string/sign_up"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:text="@string/sign_up"/>
+            android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView
@@ -27,103 +27,108 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:orientation="vertical"
-            android:paddingTop="56dp"
+            android:paddingEnd="24dp"
             android:paddingStart="24dp"
-            android:paddingEnd="24dp">
+            android:paddingTop="56dp">
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="72dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:src="@mipmap/icon_logo"/>
+                android:src="@mipmap/icon_logo" />
 
             <!--姓名-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_up_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_up_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <!--邮箱-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_up_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_up_email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <!--手机-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_up_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_up_phone"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <!--密码-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_up_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_up_password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <!--确认密码-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/edit_sign_up_re_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_up_repassword"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
                 android:background="@color/button_sign_up"
                 android:gravity="center"
                 android:padding="12dp"
-                android:textColor="@android:color/white"
-                android:text="@string/sign_up"/>
+                android:text="@string/sign_up"
+                android:textColor="@android:color/white" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_link_sign_in"
@@ -131,8 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:gravity="center"
-                android:textSize="16sp"
-                android:text="@string/sign_up_to_sign_in" />
+                android:text="@string/sign_up_to_sign_in"
+                android:textSize="16sp" />
 
         </android.support.v7.widget.LinearLayoutCompat>
 

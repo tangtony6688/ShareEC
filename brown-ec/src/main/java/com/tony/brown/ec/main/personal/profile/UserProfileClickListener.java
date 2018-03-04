@@ -147,8 +147,7 @@ public class UserProfileClickListener extends SimpleClickListener {
         final AlertDialog.Builder builder = new AlertDialog.Builder(DELEGATE.getContext());
         String currentGender = getGender(AccountManager.SignTag.USER_GENDER.name());
         int genderNum = -1;
-        for (String gender :
-                mGenders) {
+        for (String gender : mGenders) {
             genderNum++;
             if (Objects.equals(gender, currentGender)) {
                 break;

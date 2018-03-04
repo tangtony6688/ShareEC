@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_sign_up">#b8327a</color>
+    <color name="toolbar_background">#a3256a</color>
+    <color name="index_refresh">#ad2f6c</color>
+    <color name="icon_wechat">#04b00f</color>
+    <color name="app_background">#1111</color>
+    <color name="item_line">#c9c9c9</color>
+    <color name="we_chat_black">#323232</color>
+    <color name="we_chat_green">#04b00f</color>
+    <color name="item_background">#f1f1f1</color>
+    <color name="app_main">#b8327a</color>
+</resources>
