@@ -13,7 +13,7 @@ public class OrderListClickListener extends SimpleClickListener {
 
     private final OrderListDelegate DELEGATE;
 
-    public OrderListClickListener(OrderListDelegate delegate) {
+    OrderListClickListener(OrderListDelegate delegate) {
         this.DELEGATE = delegate;
     }
 

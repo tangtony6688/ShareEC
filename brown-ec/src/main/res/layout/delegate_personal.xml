@@ -13,7 +13,7 @@
         <!--头像部分-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:background="@color/toolbar_background">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -28,12 +28,39 @@
                 android:id="@+id/tv_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@id/img_user_avatar"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/personal_example_name"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_user_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/personal_icon_money"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_user_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/personal_example_money"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
@@ -65,6 +92,43 @@
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/tv_all_account_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/personal_chevron_right"
+                android:textColor="@android:color/darker_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:text="@string/personal_my_goods"
+                android:textColor="@android:color/black" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_all_publish"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/tv_all_goods_arrow"
+                android:gravity="center"
+                android:text="@string/personal_all_goods"
+                android:textColor="@android:color/darker_gray"
+                tools:ignore="RelativeOverlap" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/tv_all_goods_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"

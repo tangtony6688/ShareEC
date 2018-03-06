@@ -5,8 +5,8 @@ package com.tony.brown.net;
  */
 
 public class ApiHost {
-    private static final String API = "http://172.18.71.214:4001/~Tony/BrownServer/";
-//    private static final String API = "http://10.10.10.154:8080/~Tony/BrownServer/";
+//    private static final String API = "http://172.18.71.214:4001/~Tony/BrownServer/";
+    private static final String API = "http://172.19.93.109:8080/~Tony/BrownServer/";
     public static final String API_HOST = API + "api/";
     public static final String IMG_API_HOST = API + "data/img/";
 }

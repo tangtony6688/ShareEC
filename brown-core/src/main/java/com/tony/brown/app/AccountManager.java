@@ -14,7 +14,8 @@ public class AccountManager {
         USER_NAME,
         USER_AVATAR,
         USER_GENDER,
-        USER_BIRTH
+        USER_BIRTH,
+        USER_MONEY
     }
 
     //保存用户登录状态，登录后调用
@@ -36,6 +37,10 @@ public class AccountManager {
 
     public static void setBirth(String birth) {
         BrownPreference.setBirth(SignTag.USER_BIRTH.name(), birth);
+    }
+
+    public static void setMoney(int money) {
+        BrownPreference.setMoney(SignTag.USER_MONEY.name(), money);
     }
 
     private static boolean isSignIn() {

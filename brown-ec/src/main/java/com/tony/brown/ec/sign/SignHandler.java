@@ -24,6 +24,7 @@ public class SignHandler {
             final String avatar = profileJson.getString("avatar");
             final String gender = profileJson.getString("gender");
             final String address = profileJson.getString("address");
+            final int money = profileJson.getIntValue("money");
 
             final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
             DatabaseManager.getInstance().getDao().insertOrReplace(profile);
@@ -33,6 +34,7 @@ public class SignHandler {
             AccountManager.setUserId(userId);
             AccountManager.setUserName(name);
             AccountManager.setGender(gender);
+            AccountManager.setMoney(money);
             signListener.onSignUpSuccess();
 
         }
@@ -48,6 +50,7 @@ public class SignHandler {
             final String avatar = profileJson.getString("avatar");
             final String gender = profileJson.getString("gender");
             final String address = profileJson.getString("address");
+            final int money = profileJson.getIntValue("money");
 
             final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
             DatabaseManager.getInstance().getDao().insertOrReplace(profile);
@@ -57,6 +60,7 @@ public class SignHandler {
             AccountManager.setUserId(userId);
             AccountManager.setUserName(name);
             AccountManager.setGender(gender);
+            AccountManager.setMoney(money);
             signListener.onSignInSuccess();
         }
         return message;

@@ -92,6 +92,13 @@ public final class BrownPreference {
                 .apply();
     }
 
+    public static void setMoney(String key, int flag) {
+        getAppPreference()
+                .edit()
+                .putInt(key, flag)
+                .apply();
+    }
+
     public static boolean getAppFlag(String key) {
         return getAppPreference()
                 .getBoolean(key, false);
@@ -111,6 +118,10 @@ public final class BrownPreference {
 
     public static String getBirth(String key) {
         return getAppPreference().getString(key, "未设置生日");
+    }
+
+    public static int getMoney(String key) {
+        return getAppPreference().getInt(key, 0);
     }
 
 }

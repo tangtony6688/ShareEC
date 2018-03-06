@@ -55,9 +55,13 @@
     <string name="pay_cancel">取消支付</string>
 
     <string name="personal_example_name">糖宝</string>
+    <string name="personal_icon_money">{fa-money}</string>
+    <string name="personal_example_money">10000</string>
     <string name="personal_my_order">我的订单</string>
     <string name="personal_all_order">全部订单</string>
     <string name="personal_chevron_right">{fa-chevron-right}</string>
+    <string name="personal_my_goods">我的发布</string>
+    <string name="personal_all_goods">全部发布</string>
     <string name="personal_pay">{fa-credit-card}</string>
     <string name="personal_receive">{fa-truck}</string>
     <string name="personal_evaluate">{fa-clone}</string>
@@ -72,6 +76,7 @@
     <string name="personal_orderList_price">price</string>
     <string name="personal_orderList_time">time</string>
     <string name="personal_orderList">订单列表</string>
+    <string name="personal_publishList">发布列表</string>
     <string name="personal_orderList_comment">评价晒单</string>
     <string name="personal_profile">个人信息</string>
     <string name="personal_name">姓名</string>
@@ -93,4 +98,15 @@
 
     <string name="order_comment_mark">评分</string>
     <string name="order_comment_text">写下评论</string>
+
+    <string name="recharge_title">代币充值</string>
+    <string name="recharge_current_text">当前余额</string>
+    <string name="recharge_current_example">100 元</string>
+    <string name="recharge_100">100 代币</string>
+    <string name="recharge_500">500 代币</string>
+    <string name="recharge_1000">1000 代币</string>
+    <string name="recharge_diy">其他数额</string>
+    <string name="recharge_num_example">0</string>
+    <string name="recharge_unit">元</string>
+    <string name="recharge_button">充值</string>
 </resources>

@@ -18,6 +18,8 @@ import com.tony.brown.ec.main.personal.list.ListBean;
 import com.tony.brown.ec.main.personal.list.ListItemType;
 import com.tony.brown.ec.main.personal.order.OrderListDelegate;
 import com.tony.brown.ec.main.personal.profile.UserProfileDelegate;
+import com.tony.brown.ec.main.personal.publishgood.PublishListDelegate;
+import com.tony.brown.ec.main.personal.recharge.RechargeDelegate;
 import com.tony.brown.ec.main.personal.settings.SettingsDelegate;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
@@ -42,6 +44,8 @@ public class PersonalDelegate extends BottomItemDelegate {
     RecyclerView mRvSettings = null;
     @BindView(R2.id.tv_user_name)
     AppCompatTextView mTvUserName = null;
+    @BindView(R2.id.tv_user_money)
+    AppCompatTextView mTvUserMoney = null;
 
     public static final String ORDER_TYPE = "ORDER_TYPE";
     private Bundle mArgs = null;
@@ -53,12 +57,16 @@ public class PersonalDelegate extends BottomItemDelegate {
         return R.layout.delegate_personal;
     }
 
+    @OnClick(R2.id.tv_all_publish)
+    void onClickAllPublish() {
+        getParentDelegate().getSupportDelegate().start(new PublishListDelegate());
+    }
+
     @OnClick(R2.id.tv_all_order)
     void onClickAllOrder() {
         mArgs.putString(ORDER_TYPE, "all");
         startOrderListByType();
     }
-
 
     @OnClick(R2.id.img_user_avatar)
     void onClickAvatar() {
@@ -95,15 +103,23 @@ public class PersonalDelegate extends BottomItemDelegate {
                 .setText("系统设置")
                 .build();
 
+        final ListBean recharge = new ListBean.Builder()
+                .setItemType(ListItemType.ITEM_NORMAL)
+                .setId(3)
+                .setDelegate(new RechargeDelegate())
+                .setText("代币充值")
+                .build();
+
         final ListBean signOut = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TEXT)
-                .setId(3)
+                .setId(4)
                 .setText("注销")
                 .build();
 
         final List<ListBean> data = new ArrayList<>();
         data.add(address);
         data.add(system);
+        data.add(recharge);
         data.add(signOut);
 
         //设置RecyclerView
@@ -123,7 +139,9 @@ public class PersonalDelegate extends BottomItemDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        mTvUserName.setText(response);
+                        final String[] stringArray = response.split("&");
+                        mTvUserName.setText(stringArray[0]);
+                        mTvUserMoney.setText(stringArray[1]);
                     }
                 })
                 .build()

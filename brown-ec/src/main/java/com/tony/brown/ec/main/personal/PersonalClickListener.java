@@ -34,6 +34,9 @@ public class PersonalClickListener extends SimpleClickListener {
                 DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
                 break;
             case 3:
+                DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
+                break;
+            case 4:
                 setSignState(false);
                 DELEGATE.getParentDelegate().getSupportDelegate().replaceFragment(new SignInDelegate(), false);
                 break;
