@@ -139,6 +139,43 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:text="@string/personal_my_rent"
+                android:textColor="@android:color/black" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_all_rent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@+id/tv_all_rent_arrow"
+                android:gravity="center"
+                android:text="@string/personal_all_rent"
+                android:textColor="@android:color/darker_gray"
+                tools:ignore="RelativeOverlap" />
+
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/tv_all_rent_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/personal_chevron_right"
+                android:textColor="@android:color/darker_gray" />
+
+        </RelativeLayout>
+
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="80dp"

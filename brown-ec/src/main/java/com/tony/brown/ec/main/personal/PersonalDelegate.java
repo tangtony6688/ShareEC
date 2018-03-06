@@ -20,6 +20,7 @@ import com.tony.brown.ec.main.personal.order.OrderListDelegate;
 import com.tony.brown.ec.main.personal.profile.UserProfileDelegate;
 import com.tony.brown.ec.main.personal.publishgood.PublishListDelegate;
 import com.tony.brown.ec.main.personal.recharge.RechargeDelegate;
+import com.tony.brown.ec.main.personal.rent.RentListDelegate;
 import com.tony.brown.ec.main.personal.settings.SettingsDelegate;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
@@ -55,6 +56,11 @@ public class PersonalDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_personal;
+    }
+
+    @OnClick(R2.id.tv_all_rent)
+    void onClickAllRent() {
+        getParentDelegate().getSupportDelegate().start(new RentListDelegate());
     }
 
     @OnClick(R2.id.tv_all_publish)

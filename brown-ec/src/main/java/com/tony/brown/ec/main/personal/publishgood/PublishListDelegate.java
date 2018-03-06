@@ -28,8 +28,6 @@ import static com.tony.brown.util.storage.BrownPreference.getUserId;
 
 public class PublishListDelegate extends BrownDelegate {
 
-    private long mUserId = 0;
-
     @BindView(R2.id.rv_publish_list)
     RecyclerView mRecyclerView = null;
 
@@ -46,7 +44,7 @@ public class PublishListDelegate extends BrownDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
+        long mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
         RestClient.builder()
                 .url("publish_list.php")
                 .loader(getContext())

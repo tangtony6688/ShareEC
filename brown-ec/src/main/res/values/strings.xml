@@ -62,6 +62,8 @@
     <string name="personal_chevron_right">{fa-chevron-right}</string>
     <string name="personal_my_goods">我的发布</string>
     <string name="personal_all_goods">全部发布</string>
+    <string name="personal_my_rent">我的出租</string>
+    <string name="personal_all_rent">全部出租</string>
     <string name="personal_pay">{fa-credit-card}</string>
     <string name="personal_receive">{fa-truck}</string>
     <string name="personal_evaluate">{fa-clone}</string>
@@ -77,6 +79,7 @@
     <string name="personal_orderList_time">time</string>
     <string name="personal_orderList">订单列表</string>
     <string name="personal_publishList">发布列表</string>
+    <string name="personal_rentList">出租列表</string>
     <string name="personal_orderList_comment">评价晒单</string>
     <string name="personal_profile">个人信息</string>
     <string name="personal_name">姓名</string>
