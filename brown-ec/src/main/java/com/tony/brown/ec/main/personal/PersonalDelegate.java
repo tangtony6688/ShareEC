@@ -32,8 +32,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.tony.brown.app.AccountManager.setMoney;
+import static com.tony.brown.app.AccountManager.setUserName;
 import static com.tony.brown.util.storage.BrownPreference.getUserId;
-import static com.tony.brown.util.storage.BrownPreference.getUserName;
 
 /**
  * Created by Tony on 2017/12/15.
@@ -148,6 +149,8 @@ public class PersonalDelegate extends BottomItemDelegate {
                         final String[] stringArray = response.split("&");
                         mTvUserName.setText(stringArray[0]);
                         mTvUserMoney.setText(stringArray[1]);
+                        setUserName(stringArray[0]);
+                        setMoney(Integer.parseInt(stringArray[1]));
                     }
                 })
                 .build()

@@ -17,7 +17,6 @@ import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
-import com.tony.brown.util.log.BrownLogger;
 
 import java.util.Objects;
 

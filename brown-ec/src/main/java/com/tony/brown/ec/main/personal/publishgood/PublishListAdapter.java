@@ -27,7 +27,7 @@ public class PublishListAdapter extends MultipleRecyclerAdapter {
             .centerCrop()
             .dontAnimate();
 
-    protected PublishListAdapter(List<MultipleItemEntity> data) {
+    public PublishListAdapter(List<MultipleItemEntity> data) {
         super(data);
         addItemType(PublishListItemType.ITEM_PUBLISH_LIST, R.layout.item_order_list);
     }

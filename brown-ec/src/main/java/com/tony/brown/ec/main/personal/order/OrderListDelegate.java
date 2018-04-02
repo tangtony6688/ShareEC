@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.tony.brown.app.AccountManager;
 import com.tony.brown.delegates.BrownDelegate;
 import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
@@ -19,6 +20,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.tony.brown.util.storage.BrownPreference.getUserId;
+
 /**
  * Created by Tony on 2018/1/17.
  */
@@ -26,6 +29,7 @@ import butterknife.BindView;
 public class OrderListDelegate extends BrownDelegate {
 
     private String mType = null;
+    private long mUserId = 0;
 
     @BindView(R2.id.rv_order_list)
     RecyclerView mRecyclerView = null;
@@ -38,6 +42,7 @@ public class OrderListDelegate extends BrownDelegate {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mUserId = getUserId(AccountManager.SignTag.USER_ID.name());
         final Bundle args = getArguments();
         if (args != null) {
             mType = args.getString(PersonalDelegate.ORDER_TYPE);
@@ -55,7 +60,7 @@ public class OrderListDelegate extends BrownDelegate {
         RestClient.builder()
                 .loader(getContext())
                 .url("order_list.php")
-                .params("type", mType)
+                .params("uId", mUserId)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

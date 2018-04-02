@@ -15,6 +15,8 @@ import com.tony.brown.ui.recycler.MultipleViewHolder;
 
 import java.util.List;
 
+import static com.tony.brown.net.ApiHost.IMG_API_HOST;
+
 /**
  * Created by Tony on 2018/1/17.
  */
@@ -45,7 +47,7 @@ public class OrderListAdapter extends MultipleRecyclerAdapter {
                 final String titleVal = entity.getField(MultipleFields.TITLE);
                 final String timeVal = entity.getField(OrderItemFields.TIME);
                 final double priceVal = entity.getField(OrderItemFields.PRICE);
-                final String imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                final String imageUrl = IMG_API_HOST + entity.getField(MultipleFields.IMAGE_URL);
 
                 Glide.with(mContext)
                         .load(imageUrl)

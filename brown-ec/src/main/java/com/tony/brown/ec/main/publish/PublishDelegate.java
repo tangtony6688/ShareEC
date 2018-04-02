@@ -2,6 +2,7 @@ package com.tony.brown.ec.main.publish;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,10 @@ import com.tony.brown.ec.R;
 import com.tony.brown.ec.R2;
 import com.tony.brown.net.RestClient;
 import com.tony.brown.net.callback.ISuccess;
+import com.tony.brown.ui.widget.AutoPhotoLayout;
+import com.tony.brown.util.callback.CallbackManager;
+import com.tony.brown.util.callback.CallbackType;
+import com.tony.brown.util.callback.IGlobalCallback;
 import com.tony.brown.util.log.BrownLogger;
 
 import java.util.ArrayList;
@@ -57,6 +62,8 @@ public class PublishDelegate extends BottomItemDelegate {
     AppCompatTextView mTvGoodCount = null;
     @BindView(R2.id.tv_good_class)
     AppCompatTextView mTvGoodClass = null;
+    @BindView(R2.id.ap_good_photo)
+    AutoPhotoLayout mApGoodPhoto = null;
 
     @OnClick(R2.id.tv_publish_confirm)
     void onClickConfirm() {
@@ -155,7 +162,15 @@ public class PublishDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
+        mApGoodPhoto.setDelegate(this);
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                    @Override
+                    public void executeCallback(@Nullable Uri args) {
+                        BrownLogger.d("UriResp", args);
+                        mApGoodPhoto.onCropTarget(args);
+                    }
+                });
     }
 
     @Override

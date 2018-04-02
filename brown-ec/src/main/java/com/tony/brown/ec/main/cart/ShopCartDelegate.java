@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
@@ -27,8 +28,10 @@ import com.tony.brown.ui.recycler.MultipleItemEntity;
 import com.tony.brown.util.log.BrownLogger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.WeakHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -184,35 +187,64 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, IC
 
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-//        createOrder();
+        createOrder();
 //        FastPay.create(this).beginPayDialog();
     }
 
     //创建订单，注意，和支付是没有关系的
     private void createOrder() {
-        final String orderUrl = "你的生成订单的API";
-        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
-        //加入参数
-//        orderParams.put("userid","");
-        RestClient.builder()
-                .url(orderUrl)
-                .loader(getContext())
-                .params(orderParams)
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        //进行具体的支付
-                        BrownLogger.d("ORDER", response);
-                        final int orderId = JSON.parseObject(response).getInteger("result");
-                        FastPay.create(ShopCartDelegate.this)
-                                .setPayResultListener(ShopCartDelegate.this)
-                                .setOrderId(orderId)
-                                .beginPayDialog();
-                    }
-                })
-                .build()
-                .post();
+        if (mAdapter.getItemCount() != 0) {
+            //取出购物车数据，并初始化数据序号
+            final Map<String, Object> order = new HashMap<>();
+            Map<String, Object> orderList = new HashMap<>();
+            order.put("uIdC", mUserId);
+            final List<MultipleItemEntity> data = mAdapter.getData();
+            for (MultipleItemEntity item : data) {
+                final String id = String.valueOf(item.getField(MultipleFields.ID));
+                final String count = String.valueOf(item.getField(ShopCartItemFields.COUNT));
+                orderList.put(id, count);
+            }
+            order.put("data", orderList);
+            final String[] orderListJson = {JSON.toJSONString(order)};
 
+            final String orderUrl = "order_create.php";
+            RestClient.builder()
+                    .url(orderUrl)
+                    .loader(getContext())
+                    .params("orderList", orderListJson[0])
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            //进行具体的支付
+                            BrownLogger.d("ORDERResp", response);
+                            if (Objects.equals(response, "OK")) {
+                                order.put("total", mTotalPrice);
+                                orderListJson[0] = JSON.toJSONString(order);
+                                RestClient.builder()
+                                        .url("order_pay.php")
+                                        .params("orderList", orderListJson[0])
+                                        .success(new ISuccess() {
+                                            @Override
+                                            public void onSuccess(String response) {
+                                                if (Objects.equals(response, "OK")) {
+                                                    onClickClear();
+                                                    Toast.makeText(getContext(), "支付完成", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        })
+                                        .build()
+                                        .post();
+                            }
+////                            final int orderId = JSON.parseObject(response).getInteger("result");
+////                            FastPay.create(ShopCartDelegate.this)
+////                                    .setPayResultListener(ShopCartDelegate.this)
+////                                    .setOrderId(orderId)
+////                                    .beginPayDialog();
+                        }
+                    })
+                    .build()
+                    .post();
+        }
     }
 
     @SuppressWarnings("RestrictedApi")
